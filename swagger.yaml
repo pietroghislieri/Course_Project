@@ -1,0 +1,66 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: "Test api"
+  description: Get info on courses.
+  license:
+    name: MIT
+    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
+host: app-pg.herokuapp.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /courses:
+    x-summary: Course management
+    get:
+      summary: List All Courses
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+          examples:
+            application/json:
+              - id: 11
+                name: 'c1'
+              - id: 33
+                name: 'some other course'
+ 
+    post:
+      description: Create a course
+      summary: Create a course
+      parameters:
+        - name: course_name
+          in: body
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: ''
+          schema:
+            $ref: '#/definitions/Course'
+          examples:
+            application/json:
+                id: 38
+                name: 'some course'
+ 
+definitions:
+  Course:
+    title: some titme
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    required:
+      - id
+      - name
